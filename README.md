@@ -53,7 +53,7 @@ Before you start, ensure you have the following installed on your macOS system:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone https://github.com/mingunC/Simple-Investment-Portfolio-Tracker
     cd Simple-Investment-Portfolio-Tracker
     ```
 
