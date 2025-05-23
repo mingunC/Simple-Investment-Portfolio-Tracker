@@ -21,7 +21,7 @@ This project is designed to showcase skills relevant to a Software Developer rol
 
 ### Backend (Spring Boot)
 * **Java 17+:** Programming Language
-* **Spring Boot 3.2.5 (or higher):** Framework for building robust, stand-alone RESTful APIs.
+* **Spring Boot 3.3.12 (or higher):** Framework for building robust, stand-alone RESTful APIs.
 * **Gradle:** Build automation tool.
 * **Spring Data JPA:** For simplified database interaction and Object-Relational Mapping.
 * **H2 Database:** An in-memory, lightweight SQL database used for development and testing. Data is reset on application restart.
