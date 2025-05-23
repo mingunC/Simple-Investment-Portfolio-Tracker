@@ -89,6 +89,7 @@ Before you start, ensure you have the following installed on your macOS system:
 
 ## Project Structure
 Simple-Investment-Portfolio-Tracker/
+```text
 ├── backend/                  # Spring Boot Backend Project
 │   ├── build.gradle          # Gradle build file
 │   ├── src/
@@ -114,7 +115,7 @@ Simple-Investment-Portfolio-Tracker/
 │   │   └── ...
 │   └── ...
 └── README.md 
-
+```
 ## Troubleshooting Tips
 
 * **`zsh: command not found: <command>`:**
