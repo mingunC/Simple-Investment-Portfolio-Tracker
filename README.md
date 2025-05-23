@@ -88,3 +88,50 @@ Before you start, ensure you have the following installed on your macOS system:
 ---
 
 ## Project Structure
+Simple-Investment-Portfolio-Tracker/
+├── backend/                  # Spring Boot Backend Project
+│   ├── build.gradle          # Gradle build file
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/cmgg919/tracker/
+│   │   │   │   ├── controller/ # REST API endpoints
+│   │   │   │   ├── model/      # JPA Entities (e.g., Asset.java)
+│   │   │   │   ├── repository/ # Spring Data JPA Repositories
+│   │   │   │   └── service/    # Business logic
+│   │   │   └── resources/      # application.properties, data.sql
+│   └── ...
+├── frontend/                 # Angular Frontend Project
+│   ├── angular.json          # Angular CLI configuration
+│   ├── package.json          # Node.js dependencies
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── app.component.ts      # Root component
+│   │   │   ├── app.module.ts         # Main NgModule
+│   │   │   ├── app-routing.module.ts # Routing configuration
+│   │   │   ├── components/           # UI components (e.g., portfolio-list, asset-form)
+│   │   │   ├── models/               # TypeScript interfaces for data (e.g., asset.model.ts)
+│   │   │   └── services/             # API communication services (e.g., asset.service.ts)
+│   │   └── ...
+│   └── ...
+└── README.md 
+
+## Troubleshooting Tips
+
+* **`zsh: command not found: <command>`:**
+    * For `gradlew`, ensure you are in the `backend` directory and `gradlew` script exists (`ls -l`). If not, run `gradle wrapper`.
+    * For `node`, `npm`, `ng`, ensure your `nvm` setup is correct in `~/.zshrc` (`source ~/.zshrc` or restart terminal) and that `nvm use <version>` has activated a Node.js version. Reinstall global tools if needed (`npm install -g @angular/cli`).
+* **Compilation Errors in Spring Boot (`./gradlew bootRun`):**
+    * **`package ... does not exist`:** Check `backend/build.gradle` for missing dependencies (e.g., `spring-boot-starter-data-jpa`, `h2`).
+    * **`Table "ASSET" not found`:** Ensure `backend/src/main/resources/data.sql` starts with the `CREATE TABLE` statement for `asset`.
+    * **`Unrecognized 'hibernate.hbm2ddl.auto' setting`:** Remove comments from the same line as properties in `backend/src/main/resources/application.properties`.
+* **Compilation Errors in Angular (`ng serve --open`):**
+    * **`Component is standalone, and cannot be declared in an NgModule`:** This is the most common issue. Ensure you ran `ng new frontend --no-standalone --skip-ssr` and meticulously replaced *all* generated files inside `frontend/src/app/` with the code provided in the project. Double-check that `standalone: true` is *not* present in any of your component's `@Component` decorators.
+    * **`Cannot find module ...` (TS2307):** Check the exact relative import paths. Common mistakes: `.././` instead of `../` or `../.././` instead of `../../`.
+    * **`No suitable injection token for parameter '...'`:** Often a consequence of `Cannot find module` for a service or a component not being correctly declared in `app.module.ts`.
+    * **`Could not find stylesheet file ...`:** Ensure the `.css` file exists at the specified path (`styleUrls: ['./my-component.css']`) or remove/comment out the `styleUrls` property if no CSS file is intended.
+* **Whitelabel Error Page (404) at `http://localhost:8080/`:** Normal. Your backend is running. The API endpoints are at `/api/assets`.
+* **Empty Angular Page (only nav links) at `http://localhost:4200/`:**
+    * **Check browser console (F12 > Console tab) for JavaScript errors.**
+    * **Check browser network tab (F12 > Network tab) for API calls to `http://localhost:8080/api/assets`.** Look for `Status` (e.g., `200`, `404`, `500`, `pending`) and especially **CORS errors**. Ensure backend is running.
+
+---
